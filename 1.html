@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片中心与动态时间示例</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            display: inline-block;
+            margin-top: 50px; /* 图片向下移动 */
+        }
+
+        .dynamic-time {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+        }
+
+        img {
+            max-width: 40%;
+            max-height: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="dynamic-time"></span>
+        <img id="myImage" src="./lpp.jpg" alt="图片" onclick="redirectToSecondPage()">
+    </div>
+
+    <script>
+        function redirectToSecondPage() {
+            window.location.href = "2.html"; // 跳转到2.html页面
+        }
+
+        const dynamicTimeElement = document.querySelector(".dynamic-time");
+
+        function updateDynamicTime() {
+            const currentTime = new Date();
+            dynamicTimeElement.textContent = currentTime.toLocaleString("zh-CN", { hour: '2-digit', minute: '2-digit' }); // 仅显示小时和分钟
+        }
+
+        setInterval(updateDynamicTime, 1000);
+    </script>
+</body>
+</html>
